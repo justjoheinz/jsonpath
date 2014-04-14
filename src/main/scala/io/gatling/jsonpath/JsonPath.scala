@@ -17,6 +17,7 @@ package io.gatling.jsonpath
 
 import java.util.{ List => JList, Map => JMap }
 
+import scala.annotation.tailrec
 import scala.collection.JavaConversions.{ asScalaBuffer, asScalaIterator }
 import scala.math.abs
 
@@ -47,11 +48,11 @@ class JsonPathWalker(rootNode: Any, fullPath: List[PathToken]) {
 
   def walk(): Iterator[Any] = walk(rootNode, fullPath)
 
-  // use @tailrec in Scala 2.11, cf: https://github.com/scala/scala/pull/2865
+  //@tailrec
   private[this] def walk(node: Any, path: List[PathToken]): Iterator[Any] =
     path match {
-      case head :: tail => walk1(node, head).flatMap(walk(_, tail))
       case Nil          => Iterator.single(node)
+      case head :: tail => walk1(node, head).flatMap(walk(_, tail))
     }
 
   private[this] def walk1(node: Any, query: PathToken): Iterator[Any] = {
@@ -149,8 +150,8 @@ class JsonPathWalker(rootNode: Any, fullPath: List[PathToken]) {
     elementsToFilter(node).filter(filterFunction)
   }
 
-  // use @tailrec in Scala 2.11, cf: https://github.com/scala/scala/pull/2865
   def recFieldFilter(node: Any, name: String): Iterator[Any] = {
+      //@tailrec
       def _recFieldFilter(node: Any): Iterator[Any] =
         node match {
           case obj: JMap[_, _] =>

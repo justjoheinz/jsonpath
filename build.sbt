@@ -8,22 +8,25 @@ organization := "io.gatling"
 
 version := "0.5-SNAPSHOT"                                                       
 
-scalaVersion := "2.10.4"   
+scalaVersion := "2.11.0-RC4"   
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
+
+libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1"           
+
 /// ScalaTest
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.1.0" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.1.3" % "test"
 
 libraryDependencies += "com.fasterxml.jackson.core" % "jackson-databind" % "2.3.2" % "test"
 
 /// ScalaMeter
-libraryDependencies += "com.github.axel22" %% "scalameter" % "0.4" % "test"
-
-testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
+//TODO libraryDependencies += "com.github.axel22" %% "scalameter" % "0.5-M1" % "test"
+//
+//TODO testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
 
 /// Scoverage plugin
-ScoverageSbtPlugin.instrumentSettings
+//TODO ScoverageSbtPlugin.instrumentSettings
 
 /// Scalariform
 
