@@ -8,11 +8,11 @@ organization := "io.gatling"
 
 version := "0.5-SNAPSHOT"                                                       
 
-scalaVersion := "2.11.0-RC4"   
+scalaVersion := "2.11.0"   
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
-
+/// Parser combinators
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1"           
 
 /// ScalaTest
